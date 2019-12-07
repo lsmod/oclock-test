@@ -11,6 +11,9 @@ exports[`Test composant <App /> les snapshot 1`] = `
       <h1>
         Convertiseur de devices
       </h1>
+      <div>
+        Chargement...
+      </div>
     </header>
   </div>
 </DocumentFragment>
