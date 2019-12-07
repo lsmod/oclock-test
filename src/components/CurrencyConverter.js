@@ -1,10 +1,11 @@
 import React from "react";
+import "./CurrencyConverter.css";
+import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import SyncAlt from "@material-ui/icons/SyncAlt";
-import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
-import "./CurrencyConverter.css";
 
 function CurrencyConverter() {
   const [device, setDevice] = React.useState("DOLLAR"); // device vers laquelle convertir nos euros
@@ -29,51 +30,75 @@ function CurrencyConverter() {
     convertDevice(event.target.value);
   };
 
+  // on fait semblant de charger pendant 3 secondes
   setTimeout(() => {
     setIsLoading(false);
   }, 3000);
 
   if (isLoading) {
-    return <div>Chargement...</div>;
+    return (
+      <div>
+        <CircularProgress />
+        <br />
+        Chargement des taux de change
+      </div>
+    );
   }
 
+  // on n'est pas en train de charger -> on affiche notre convertisseur
   return (
-    <div className="currency-converter_wrapper">
-      <TextField
-        id="user-value"
-        label="Euro"
-        type="number"
-        InputLabelProps={{
-          shrink: true
-        }}
-        variant="outlined"
-        value={userValue}
-        onChange={handleUserValueChange}
-      />
-      <SyncAlt fontSize="large" />
-      <TextField
-        id="converted-value"
-        label={device}
-        type="number"
-        InputLabelProps={{
-          shrink: true
-        }}
-        disabled
-        variant="outlined"
-        value={convertedValue}
-      />
-      VERS
-      <InputLabel id="device-input-label">Device</InputLabel>
-      <Select
-        labelId="device-select-label"
-        id="device-select-label"
-        value={device}
-        onChange={handleDeviceChange}
+    <div className="currency-converter-wrapper">
+      <Grid
+        container
+        direction="row"
+        justify="space-between"
+        alignItems="center"
       >
-        <MenuItem value="EURO">Euro</MenuItem>
-        <MenuItem value="DOLLAR">Dollar</MenuItem>
-        <MenuItem value="YUAN">Yuan</MenuItem>
-      </Select>
+        <TextField
+          id="user-value"
+          label="EUR"
+          type="number"
+          InputLabelProps={{
+            shrink: true
+          }}
+          variant="outlined"
+          value={userValue}
+          onChange={handleUserValueChange}
+          className="converter-input"
+        />
+        <SyncAlt fontSize="large" className="converting-icon" />
+        <TextField
+          id="converted-value"
+          label={device}
+          type="number"
+          InputLabelProps={{
+            shrink: true
+          }}
+          disabled
+          variant="outlined"
+          className="converter-input"
+          value={convertedValue}
+        />
+      </Grid>
+      <Grid
+        container
+        direction="row"
+        justify="space-between"
+        alignItems="center"
+        className="device-selector-grid"
+      >
+        <div className="user-device-div">Euro</div>
+        <Select
+          labelId="device-select-label"
+          id="device-select-label"
+          value={device}
+          onChange={handleDeviceChange}
+        >
+          <MenuItem value="EUR">EUR</MenuItem>
+          <MenuItem value="DOLLAR">Dollar</MenuItem>
+          <MenuItem value="YUAN">Yuan</MenuItem>
+        </Select>
+      </Grid>
     </div>
   );
 }

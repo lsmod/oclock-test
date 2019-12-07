@@ -1,2 +1,17 @@
-.currency-converter_wrapper {
+.currency-converter-wrapper {
+}
+
+.converting-icon {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.converter-input {
+  width: 33%;
+}
+.device-selector-grid {
+  margin-top: 5px;
+}
+
+.user-device-div {
 }
