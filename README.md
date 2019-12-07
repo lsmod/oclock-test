@@ -41,7 +41,7 @@ Construit l'application prête à être déployé avec la taille des fichiers op
 npm run test
 ```
 
-Lance les tests unitaires (basé sur la librairie [jest-dom](https://github.com/testing-library/jest-dom)).
+Lance les tests unitaires (basé sur `react-testing-library` et la librairie [jest-dom](https://github.com/testing-library/jest-dom)).
 
 _note:
-L'implémentation des tests (basée sur `react-testing-library`et `jest-dom`) est fortement inspirée de cette article: https://css-tricks.com/getting-started-with-react-testing-library/_
+L'implémentation des tests est fortement inspirée de cet article: https://css-tricks.com/getting-started-with-react-testing-library/_
