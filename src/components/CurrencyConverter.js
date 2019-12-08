@@ -1,39 +1,81 @@
 import React from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import "./CurrencyConverter.css";
 import Grid from "@material-ui/core/Grid";
+import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import SyncAlt from "@material-ui/icons/SyncAlt";
+
 import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
+import SyncAlt from "@material-ui/icons/SyncAlt";
+import BugReport from "@material-ui/icons/BugReport";
 
 function CurrencyConverter() {
-  const [device, setDevice] = React.useState("DOLLAR"); // device vers laquelle convertir nos euros
-  const [userValue, setUserValue] = React.useState(1); // valeur à convertir
-  const [convertedValue, setConvertedValue] = React.useState(0.9); // valeur une fois convertie
-  const [convertionRate, setConvertionRate] = React.useState(0.78); // taux de change/convertion
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [deviceRate, setDeviceRate] = useState({ device: "EUR", rate: 1 }); // device et taux sélectionner pour convertir nos euros
+  const [apiDevicesRates, setApiDevicesRates] = useState({}); // liste des device et des taux de change
+  const [isLoading, setIsLoading] = useState(true); // utilisé pour afficher un loader pendant la récupération des taux depuis l'API web
+  const [isApiDown, setApiDown] = useState(false); // dans le cas ou on n'arrive pas joindre l'API on affichera un message d'erreur
+  const [userValue, setUserValue] = useState(1); // valeur à convertir
+  const [convertedValue, setConvertedValue] = useState(0.9); // valeur une fois convertie
 
-  const convertDevice = value => {
-    setConvertedValue(value * convertionRate);
-  };
-
+  // l'utilisateur a sélectionner une device vers laquelle convertir ses euros
   const handleDeviceChange = event => {
-    const newConvertionRate = convertionRate * 1.5; // en attendant d'utiliser des vrai taux de change au le fais varier à chaque fois
-    setConvertionRate(newConvertionRate);
-    setDevice(event.target.value);
-    convertDevice(userValue);
+    setDeviceRate({
+      device: event.target.value,
+      rate: apiDevicesRates[event.target.value]
+    });
   };
 
+  // l'utilisateur entre combien d'euro il veut convertir
   const handleUserValueChange = event => {
     setUserValue(event.target.value);
-    convertDevice(event.target.value);
   };
 
-  // on fait semblant de charger pendant 3 secondes
-  setTimeout(() => {
-    setIsLoading(false);
-  }, 3000);
+  // on surveille:
+  // - la device sélectionné par l'utilisateur
+  // - la valeur en euro entrée par l'utilisateur
+  // en cas de changement on refait notre convertion avec le taux et la device actuelle
+  useEffect(() => {
+    setConvertedValue(userValue * deviceRate.rate);
+  }, [deviceRate, userValue]);
+
+  // au chargement de notre composant :
+  // - on récupère les taux de change depuis l'API fixer.io
+  // - on actualise le state du composant (setDevicesRates, setApiDown, setIsLoading)
+  useEffect(() => {
+    // allons chercher les devices et taux de change via l'API fixer.io
+    axios
+      .get("http://data.fixer.io/api/latest", {
+        params: {
+          base: "EUR",
+          access_key: "811513ec9211e6a63b6f694ceb5bafd6"
+        }
+      })
+      .then(response => {
+        if (!response.data || !response.data.success || !response.data.rates) {
+          return Promise.reject(response);
+        }
+        setApiDevicesRates(response.data.rates);
+      })
+      .catch(err => {
+        console.log("fetching api error:", err);
+        setApiDown(true);
+      })
+      .finally(() => setIsLoading(false));
+  }, []);
+
+  if (isApiDown) {
+    return (
+      <div>
+        <BugReport />
+        <br />
+        Impossible de charer les derniers taux de change.
+        <br />
+        Veuillez ré-essayer plutard
+      </div>
+    );
+  }
 
   if (isLoading) {
     return (
@@ -45,7 +87,7 @@ function CurrencyConverter() {
     );
   }
 
-  // on n'est pas en train de charger -> on affiche notre convertisseur
+  // on n'est pas en train de charger? -> on affiche notre convertisseur
   return (
     <div className="currency-converter-wrapper">
       <Grid
@@ -69,7 +111,7 @@ function CurrencyConverter() {
         <SyncAlt fontSize="large" className="converting-icon" />
         <TextField
           id="converted-value"
-          label={device}
+          label={deviceRate.device}
           type="number"
           InputLabelProps={{
             shrink: true
@@ -91,12 +133,14 @@ function CurrencyConverter() {
         <Select
           labelId="device-select-label"
           id="device-select-label"
-          value={device}
+          value={deviceRate.device}
           onChange={handleDeviceChange}
         >
-          <MenuItem value="EUR">EUR</MenuItem>
-          <MenuItem value="DOLLAR">Dollar</MenuItem>
-          <MenuItem value="YUAN">Yuan</MenuItem>
+          {Object.keys(apiDevicesRates).map(deviceName => (
+            <MenuItem key={deviceName} value={deviceName}>
+              {deviceName}
+            </MenuItem>
+          ))}
         </Select>
       </Grid>
     </div>
