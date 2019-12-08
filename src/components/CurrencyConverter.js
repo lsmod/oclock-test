@@ -12,14 +12,14 @@ import SyncAlt from "@material-ui/icons/SyncAlt";
 import BugReport from "@material-ui/icons/BugReport";
 
 function CurrencyConverter() {
-  const [deviceRate, setDeviceRate] = useState({ device: "EUR", rate: 1 }); // device et taux sélectionner pour convertir nos euros
-  const [apiDevicesRates, setApiDevicesRates] = useState({}); // liste des device et des taux de change
+  const [deviceRate, setDeviceRate] = useState({ device: "EUR", rate: 1 }); // devises et taux sélectionner pour convertir nos euros
+  const [apiDevicesRates, setApiDevicesRates] = useState({}); // liste des devises et des taux de change
   const [isLoading, setIsLoading] = useState(true); // utilisé pour afficher un loader pendant la récupération des taux depuis l'API web
   const [isApiDown, setApiDown] = useState(false); // dans le cas ou on n'arrive pas joindre l'API on affichera un message d'erreur
   const [userValue, setUserValue] = useState(1); // valeur à convertir
   const [convertedValue, setConvertedValue] = useState(0.9); // valeur une fois convertie
 
-  // l'utilisateur a sélectionner une device vers laquelle convertir ses euros
+  // l'utilisateur a sélectionné une devise vers laquelle convertir ses euros
   const handleDeviceChange = event => {
     setDeviceRate({
       device: event.target.value,
@@ -33,9 +33,9 @@ function CurrencyConverter() {
   };
 
   // on surveille:
-  // - la device sélectionné par l'utilisateur
+  // - la devise sélectionnée par l'utilisateur
   // - la valeur en euro entrée par l'utilisateur
-  // en cas de changement on refait notre convertion avec le taux et la device actuelle
+  // en cas de changement on refait notre convertion avec le taux et la devise actuelle
   useEffect(() => {
     setConvertedValue(userValue * deviceRate.rate);
   }, [deviceRate, userValue]);
@@ -44,7 +44,7 @@ function CurrencyConverter() {
   // - on récupère les taux de change depuis l'API fixer.io
   // - on actualise le state du composant (setDevicesRates, setApiDown, setIsLoading)
   useEffect(() => {
-    // allons chercher les devices et taux de change via l'API fixer.io
+    // allons chercher les devises et taux de change via l'API fixer.io
     axios
       .get("http://data.fixer.io/api/latest", {
         params: {
@@ -70,7 +70,7 @@ function CurrencyConverter() {
       <div>
         <BugReport />
         <br />
-        Impossible de charer les derniers taux de change.
+        Impossible de charger les derniers taux de change.
         <br />
         Veuillez ré-essayer plutard
       </div>
