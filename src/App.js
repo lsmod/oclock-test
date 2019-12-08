@@ -1,7 +1,6 @@
 import React from "react";
 import "./App.css";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CurrencyConverter from "./components/CurrencyConverter";
 
