@@ -8,7 +8,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 
 function CurrencyConverter() {
-  const [device, setDevice] = React.useState("DOLLAR"); // device vers laquelle convertir nos euros
+  const [device, setDevice] = React.useState("DOLLAR"); // devise vers laquelle convertir nos euros
   const [userValue, setUserValue] = React.useState(1); // valeur à convertir
   const [convertedValue, setConvertedValue] = React.useState(0.9); // valeur une fois convertie
   const [convertionRate, setConvertionRate] = React.useState(0.78); // taux de change/convertion
@@ -19,7 +19,7 @@ function CurrencyConverter() {
   };
 
   const handleDeviceChange = event => {
-    const newConvertionRate = convertionRate * 1.5; // en attendant d'utiliser des vrai taux de change au le fais varier à chaque fois
+    const newConvertionRate = convertionRate * 1.5; // en attendant d'utiliser les vraix taux de change on les fait varier à chaque fois
     setConvertionRate(newConvertionRate);
     setDevice(event.target.value);
     convertDevice(userValue);
