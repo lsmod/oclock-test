@@ -9,7 +9,7 @@ exports[`Test composant <App /> les snapshot 1`] = `
       class="App-header"
     >
       <h1>
-        Convertiseur de devices
+        Convertiseur de devises
       </h1>
       <div>
         <div
