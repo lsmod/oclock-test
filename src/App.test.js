@@ -5,7 +5,7 @@ import App from "./App";
 afterEach(cleanup);
 
 describe("Test composant <App />", () => {
-  it("le titre est bien 'Convertisseur de devices'", () => {
+  it("le titre est bien 'Convertisseur de devises'", () => {
     const { getByText, asFragment } = render(<App />);
     const linkElement = getByText("Convertiseur de devises");
     expect(linkElement).toBeInTheDocument();
