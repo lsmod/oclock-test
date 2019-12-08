@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  background-color: #402e09;
+  background-image: url(assets/denys-nevozhai-j8Bc4UerZXY-unsplash-reduced.jpg);
+  background-size: cover;
 }
 
 .App-header {

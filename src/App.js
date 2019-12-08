@@ -1,13 +1,20 @@
 import React from "react";
 import "./App.css";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
 import CurrencyConverter from "./components/CurrencyConverter";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Convertiseur de devises</h1>
-        <CurrencyConverter />
+        <Card>
+          <CardContent>
+            <h2>Convertiseur de devises</h2>
+            <CurrencyConverter />
+          </CardContent>
+        </Card>
       </header>
     </div>
   );

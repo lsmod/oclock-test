@@ -8,31 +8,39 @@ exports[`Test composant <App /> les snapshot 1`] = `
     <header
       class="App-header"
     >
-      <h1>
-        Convertiseur de devises
-      </h1>
-      <div>
+      <div
+        class="MuiPaper-root MuiPaper-elevation1 MuiCard-root MuiPaper-rounded"
+      >
         <div
-          class="MuiCircularProgress-root MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
-          role="progressbar"
-          style="width: 40px; height: 40px;"
+          class="MuiCardContent-root"
         >
-          <svg
-            class="MuiCircularProgress-svg"
-            viewBox="22 22 44 44"
-          >
-            <circle
-              class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
-              cx="44"
-              cy="44"
-              fill="none"
-              r="20.2"
-              stroke-width="3.6"
-            />
-          </svg>
+          <h2>
+            Convertiseur de devises
+          </h2>
+          <div>
+            <div
+              class="MuiCircularProgress-root MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+              role="progressbar"
+              style="width: 40px; height: 40px;"
+            >
+              <svg
+                class="MuiCircularProgress-svg"
+                viewBox="22 22 44 44"
+              >
+                <circle
+                  class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+                  cx="44"
+                  cy="44"
+                  fill="none"
+                  r="20.2"
+                  stroke-width="3.6"
+                />
+              </svg>
+            </div>
+            <br />
+            Chargement des taux de change
+          </div>
         </div>
-        <br />
-        Chargement des taux de change
       </div>
     </header>
   </div>

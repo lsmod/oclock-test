@@ -13,14 +13,14 @@ describe("Test composant <App />", () => {
 
   it("le titre est un <h1>", () => {
     const { getByText, asFragment } = render(<App />);
-    const titleH1 = document.querySelector("h1");
+    const titleH1 = document.querySelector("h2");
     expect(titleH1).toBeInTheDocument();
   });
 
   it("le titre est imbriqué dans un <header>", () => {
     const { getByText, asFragment } = render(<App />);
     const header = document.querySelector("header");
-    const titleH1 = document.querySelector("h1");
+    const titleH1 = document.querySelector("h2");
     expect(header).toContainElement(titleH1);
   });
 
