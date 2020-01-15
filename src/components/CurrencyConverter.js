@@ -60,6 +60,7 @@ function CurrencyConverter() {
     return <Loader />;
   }
 
+
   // on n'est pas en train de charger ? -> on affiche notre convertisseur
   return (
     <div className="currency-converter-wrapper">

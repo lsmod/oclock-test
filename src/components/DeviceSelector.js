@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, memo } from "react";
 import DeviceContext from "../contexts/DeviceContext";
 
 import Select from "@material-ui/core/Select";
@@ -7,7 +7,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 
 // selecteur de devises:
 // permet à l'utilisateur de sélectionner la devise vers laquelle il souhaite convertir ses euros
-function DeviceSelector(props) {
+const DeviceSelector = (props) => {
   const deviceContext = useContext(DeviceContext);
 
   return (
@@ -24,6 +24,6 @@ function DeviceSelector(props) {
       ))}
     </Select>
   );
-}
+};
 
-export default DeviceSelector;
+export default memo(DeviceSelector);
