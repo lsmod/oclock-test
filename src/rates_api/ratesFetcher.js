@@ -1,5 +1,4 @@
 import axios from "axios";
-import apiKey from "./apiKey";
 
 /**
  * charge les devises taux de conversion depuis l'API fixer.io
@@ -14,7 +13,7 @@ export default (setApiDevicesRates, setApiDown, setIsLoading) => {
     .get("http://data.fixer.io/api/latest", {
       params: {
         base: "EUR",
-        access_key: apiKey
+        access_key: process.env.REACT_APP_FIXER_API_KEY
       }
     })
     .then(response => {
