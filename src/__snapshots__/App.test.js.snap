@@ -15,7 +15,7 @@ exports[`Test composant <App /> les snapshot 1`] = `
           class="MuiCardContent-root"
         >
           <h2>
-            Convertiseur de devises
+            Convertisseur de devises
           </h2>
           <div>
             <div

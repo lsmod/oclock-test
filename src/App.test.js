@@ -7,7 +7,7 @@ afterEach(cleanup);
 describe("Test composant <App />", () => {
   it("le titre est bien 'Convertisseur de devises'", () => {
     const { getByText, asFragment } = render(<App />);
-    const linkElement = getByText("Convertiseur de devises");
+    const linkElement = getByText("Convertisseur de devises");
     expect(linkElement).toBeInTheDocument();
   });
 
