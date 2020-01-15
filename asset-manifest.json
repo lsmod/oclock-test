@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/oclock-test/static/css/main.cb84aa2c.chunk.css",
+    "main.js": "/oclock-test/static/js/main.e4a5aa9c.chunk.js",
+    "main.js.map": "/oclock-test/static/js/main.e4a5aa9c.chunk.js.map",
+    "runtime-main.js": "/oclock-test/static/js/runtime-main.7f95062d.js",
+    "runtime-main.js.map": "/oclock-test/static/js/runtime-main.7f95062d.js.map",
+    "static/js/2.60a4a927.chunk.js": "/oclock-test/static/js/2.60a4a927.chunk.js",
+    "static/js/2.60a4a927.chunk.js.map": "/oclock-test/static/js/2.60a4a927.chunk.js.map",
+    "index.html": "/oclock-test/index.html",
+    "precache-manifest.5416090b4e057503748323392d47d2af.js": "/oclock-test/precache-manifest.5416090b4e057503748323392d47d2af.js",
+    "service-worker.js": "/oclock-test/service-worker.js",
+    "static/css/main.cb84aa2c.chunk.css.map": "/oclock-test/static/css/main.cb84aa2c.chunk.css.map",
+    "static/js/2.60a4a927.chunk.js.LICENSE": "/oclock-test/static/js/2.60a4a927.chunk.js.LICENSE",
+    "static/media/App.css": "/oclock-test/static/media/denys-nevozhai-j8Bc4UerZXY-unsplash-reduced.2361bbdd.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7f95062d.js",
+    "static/js/2.60a4a927.chunk.js",
+    "static/css/main.cb84aa2c.chunk.css",
+    "static/js/main.e4a5aa9c.chunk.js"
+  ]
+}
